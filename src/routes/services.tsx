@@ -5,6 +5,7 @@ import { CheckCircle2, FlaskConical, Target, Cpu, LineChart, FileText } from "lu
 import { useRef, useEffect } from "react";
 import backgroundVideo from "@/assets/web-background.mov";
 import inSilicoVideo from "@/assets/in-silico-v2.mov";
+import heroMolecule from "@/assets/hero-molecule.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -141,9 +142,10 @@ function VideoAsset({ src, range }: { src: string; range?: [number, number] }) {
       autoPlay
       muted
       playsInline
+      preload="auto"
+      poster={heroMolecule}
       className="absolute inset-0 w-full h-full object-cover"
     >
-      <source src={src} type="video/quicktime" />
       <source src={src} type="video/mp4" />
     </video>
   );
