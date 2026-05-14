@@ -4,7 +4,7 @@ import { SectionEyebrow } from "@/components/Section";
 import { CheckCircle2, FlaskConical, Target, Cpu, LineChart, FileText } from "lucide-react";
 import { useRef, useEffect } from "react";
 import backgroundVideo from "@/assets/web-background.mov";
-import inSilicoVideo from "@/assets/in-silico-screening.mov";
+import inSilicoVideo from "@/assets/in-silico-v2.mov";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
