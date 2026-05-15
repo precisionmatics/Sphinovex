@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import favicon from "../assets/favicon.png?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -112,9 +113,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
-      { rel: "icon", type: "image/png", href: "/favicon.png?v=2" },
-      { rel: "shortcut icon", href: "/favicon.png?v=2" },
-      { rel: "apple-touch-icon", href: "/favicon.png?v=2" },
+      { rel: "icon", type: "image/png", href: favicon },
+      { rel: "shortcut icon", href: favicon },
+      { rel: "apple-touch-icon", href: favicon },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
