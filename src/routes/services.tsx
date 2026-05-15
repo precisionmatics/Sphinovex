@@ -89,10 +89,10 @@ const serviceSuites = [
   },
 ];
 
-function VideoAsset({ src }: { src: string }) {
+function VideoAsset({ src, index }: { src: string; index: number }) {
   return (
     <video
-      key={src}
+      key={`${src}-${index}`}
       autoPlay
       muted
       loop
@@ -227,7 +227,7 @@ function ServicesPage() {
                 <div
                   className="flex-1 w-full aspect-square rounded-[2rem] border border-border shadow-elegant overflow-hidden relative"
                 >
-                  <VideoAsset src={suite.videoSrc} />
+                  <VideoAsset src={suite.videoSrc} index={idx} />
                 </div>
               </motion.div>
             ))}
