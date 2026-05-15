@@ -57,7 +57,6 @@ const serviceSuites = [
     ],
     deliverables: "Ranked target lists, biological mechanism reports, and validation data.",
     imageColor: "bg-blue-500/10",
-    videoRange: [0, 10],
     videoSrc: backgroundVideo,
   },
   {
@@ -73,7 +72,6 @@ const serviceSuites = [
     deliverables: "Hit-to-lead candidates, binding mode analysis, and ADMET predictions.",
     imageColor: "bg-purple-500/10",
     videoSrc: inSilicoVideo,
-    videoRange: [5, 15],
   },
   {
     title: "Lead Optimization & Analytics",
@@ -87,66 +85,24 @@ const serviceSuites = [
     ],
     deliverables: "Optimized lead profiles, stability data, and publication-ready reports.",
     imageColor: "bg-emerald-500/10",
-    videoRange: [20, 30],
     videoSrc: backgroundVideo,
   },
 ];
 
-function VideoAsset({ src, range }: { src: string; range?: [number, number] }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (!range) {
-      video.loop = true;
-      video.play().catch(() => {});
-      return;
-    }
-
-    const [start, end] = range;
-
-    const handleTimeUpdate = () => {
-      if (video.currentTime >= end) {
-        video.currentTime = start;
-        video.play().catch(() => {});
-      }
-    };
-
-    const handleLoadedMetadata = () => {
-      video.currentTime = start;
-      video.play().catch(() => {});
-    };
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-
-    if (video.readyState >= 1) {
-      if (video.currentTime < start || video.currentTime >= end) {
-        video.currentTime = start;
-      }
-      video.play().catch(() => {});
-    }
-
-    return () => {
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-    };
-  }, [range, src]);
-
+function VideoAsset({ src }: { src: string }) {
   return (
     <video
-      ref={videoRef}
       key={src}
       autoPlay
       muted
+      loop
       playsInline
       preload="auto"
       poster={heroMolecule}
       className="absolute inset-0 w-full h-full object-cover"
     >
       <source src={src} type="video/mp4" />
+      <source src={src} type="video/quicktime" />
     </video>
   );
 }
@@ -271,10 +227,7 @@ function ServicesPage() {
                 <div
                   className="flex-1 w-full aspect-square rounded-[2rem] border border-border shadow-elegant overflow-hidden relative"
                 >
-                  <VideoAsset
-                    src={suite.videoSrc}
-                    range={suite.videoRange as [number, number] | undefined}
-                  />
+                  <VideoAsset src={suite.videoSrc} />
                 </div>
               </motion.div>
             ))}
